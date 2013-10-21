@@ -1,14 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Movement.cs">
-    <Files>
-      <File FileName="Assets\Movement.cs" Line="28" Column="35" />
-      <File FileName="Assets\Follow.cs" Line="8" Column="28" />
-      <File FileName="Assets\Standard Assets\Scripts\Camera Scripts\SmoothFollow.js" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Scripts\Camera Scripts\SmoothLookAt.js" Line="1" Column="1" />
-      <File FileName="Assets\TargetSeeker.cs" Line="26" Column="30" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
