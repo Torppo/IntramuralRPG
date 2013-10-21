@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetSeeker : MonoBehaviour {
+/*
+ * Makes the parent object follow the player when they enter the trigger zone
+ */
+public class FindTarget : MonoBehaviour {
 	
-	private Follow follow;
+	private Follow follow; //the parent object's follow script
 	
-	// Use this for initialization
 	void Start () {
 		follow = transform.parent.GetComponent<Follow>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
