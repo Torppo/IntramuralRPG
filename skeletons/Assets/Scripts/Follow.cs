@@ -29,6 +29,7 @@ public class Follow : MonoBehaviour {
 		
 		//face target
 		Vector3 targetDir =  -1 *(transform.position - followTarget.transform.position);
+		targetDir.y = 0;
 		float step = turnSpeed * Time.deltaTime;
     	Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
 		transform.rotation = Quaternion.LookRotation(newDir);

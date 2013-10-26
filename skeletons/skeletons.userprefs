@@ -1,20 +1,13 @@
 ﻿<Properties>
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench />
-=======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GetHit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MouseOrbitImproved.cs">
     <Files>
-      <File FileName="Assets\GetHit.cs" Line="19" Column="51" />
-      <File FileName="Assets\Weapon.cs" Line="7" Column="71" />
-      <File FileName="Assets\Scripts\FindTarget.cs" Line="9" Column="60" />
-      <File FileName="Assets\Scripts\Follow.cs" Line="45" Column="4" />
-      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="26" Column="104" />
-      <File FileName="Assets\Scripts\HashIDs.cs" Line="11" Column="100" />
+      <File FileName="Assets\Scripts\Follow.cs" Line="35" Column="56" />
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="51" Column="35" />
+      <File FileName="Assets\Scripts\MouseOrbitImproved.cs" Line="55" Column="51" />
+      <File FileName="Assets\Scripts\HealthBar.cs" Line="4" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
->>>>>>> df381b7a598bf5a43592e25b8274c7be51eb9ac4
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
