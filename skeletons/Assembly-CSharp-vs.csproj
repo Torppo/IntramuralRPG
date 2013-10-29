@@ -53,6 +53,8 @@
      <Compile Include="Assets\Scripts\HeroMain.cs" />
      <Compile Include="Assets\Scripts\MouseOrbitImproved.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\SaveControl.cs" />
+     <Compile Include="Assets\Scripts\SaveLocation.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
