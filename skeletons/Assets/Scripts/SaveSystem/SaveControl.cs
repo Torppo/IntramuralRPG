@@ -3,13 +3,15 @@ using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-public class SaveControl : MonoBehaviour {
+public class SaveControl : MonoBehaviour, ISaveService {
+	
+	public static SaveControl manager;
 	
 	public string slotname = "slot1";
 	
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+		manager = this;
 	}
 	
 	// Update is called once per frame
@@ -20,12 +22,15 @@ public class SaveControl : MonoBehaviour {
 	}
 	
 	public void DoSave(){
-		this.BroadcastMessage("SaveData");
+		this.BroadcastMessage("SaveData", this);
+		InstanceManager.manager.SaveData();
 		PlayerPrefs.SetInt(slotname + "._level", Application.loadedLevel);
+
 	}
 	
 	public void DoLoad(){
-		this.BroadcastMessage("LoadData");
+		this.BroadcastMessage("LoadData", this);
+		InstanceManager.manager.LoadData();
 	}
 	
 	public void SaveString(GameObject obj, string name, string content) {
@@ -42,6 +47,14 @@ public class SaveControl : MonoBehaviour {
 	
 	public float LoadFloat(GameObject obj, string name){
 		return PlayerPrefs.GetFloat(slotname + "." + obj.name + "." + name);
+	}
+	
+	public void SaveInt(GameObject obj, string name, int content) {
+		PlayerPrefs.SetInt(slotname + "." + obj.name + "." + name, content);
+	}
+	
+	public int LoadInt(GameObject obj, string name){
+		return PlayerPrefs.GetInt(slotname + "." + obj.name + "." + name);
 	}
 	
 	public static string Serialize(object o){

@@ -3,14 +3,8 @@ using System.Collections;
 
 public class SaveLocation : MonoBehaviour {
 	
-	private SaveControl sc;
 	
-	// Use this for initialization
-	void Awake () {
-		sc = GameObject.FindGameObjectWithTag("SaveControl").GetComponent<SaveControl>();
-	}
-	
-	public void SaveData(){
+	public void SaveData(ISaveService sc){
 		sc.SaveFloat(this.gameObject, "location.position.x", this.transform.position.x);
 		sc.SaveFloat(this.gameObject, "location.position.y", this.transform.position.y);
 		sc.SaveFloat(this.gameObject, "location.position.z", this.transform.position.z);
@@ -25,7 +19,7 @@ public class SaveLocation : MonoBehaviour {
 		sc.SaveFloat(this.gameObject, "location.scale.z", this.transform.localScale.z);
 	}
 	
-	public void LoadData(){
+	public void LoadData(ISaveService sc){
 		this.transform.position = new Vector3(
 			sc.LoadFloat(this.gameObject, "location.position.x"),
 			sc.LoadFloat(this.gameObject, "location.position.y"),
