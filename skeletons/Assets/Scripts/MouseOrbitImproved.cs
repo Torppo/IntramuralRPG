@@ -49,7 +49,6 @@ public class MouseOrbitImproved : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Linecast (target.position, targetPosition, out hit) && hit.transform != target) {
                 distance = Mathf.Lerp(distance, hit.distance, Time.deltaTime * damping);
-				Debug.Log(hit.collider.gameObject.name);
         }
 		else{
 			distance = Mathf.Lerp(distance, defaultDistance, Time.deltaTime * damping);
