@@ -17,7 +17,9 @@ public class SaveControl : MonoBehaviour, ISaveService {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.F1)) DoSave();
-		if (Input.GetKeyDown(KeyCode.F2)) DoLoad();
+		if (Input.GetKeyDown(KeyCode.F2)) { 
+			GameObject.FindGameObjectWithTag("PersistentLoader").GetComponent<PersistentLoader>().LoadGame(slotname);
+		}
 		if (Input.GetKeyDown(KeyCode.F12)) PlayerPrefs.DeleteAll();
 	}
 	

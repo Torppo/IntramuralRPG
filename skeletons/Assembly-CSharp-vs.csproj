@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\ISaveService.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\InstanceManager.cs" />
+     <Compile Include="Assets\Scripts\SaveSystem\PersistentLoader.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\SaveControl.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\SaveLocation.cs" />
      <Compile Include="Assets\Scripts\TestSphereSpawner.cs" />
