@@ -6,6 +6,7 @@ public class PersistentLoader : MonoBehaviour {
 	public bool loading = false;
 	public string saveSlot;
 	
+	
 	public void Awake(){
 		if (GameObject.FindGameObjectsWithTag("PersistentLoader").Length > 1){
 			GameObject.Destroy(this.gameObject);
@@ -30,6 +31,7 @@ public class PersistentLoader : MonoBehaviour {
 			SaveControl sc = GameObject.FindGameObjectWithTag("SaveControl").GetComponent<SaveControl>();
 			sc.slotname = saveSlot;
 			sc.DoLoad();
+			Time.timeScale = 1.0f;
 		}
 	}
 }

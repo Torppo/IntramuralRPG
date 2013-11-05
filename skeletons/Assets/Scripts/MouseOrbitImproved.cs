@@ -21,9 +21,10 @@ public class MouseOrbitImproved : MonoBehaviour {
  
     float x = 0.0f;
     float y = 0.0f;
+	
  
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -34,32 +35,46 @@ public class MouseOrbitImproved : MonoBehaviour {
 	}
  
     void LateUpdate () {
-    if (target) {
-        x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
- 
-        y = ClampAngle(y, yMinLimit, yMaxLimit);
- 
-        Quaternion rotation = Quaternion.Euler(y, x, 0);
- 
-        defaultDistance = Mathf.Clamp(defaultDistance - Input.GetAxis("Mouse ScrollWheel")*5, distanceMin, distanceMax);
+	    if (target) {
+	        x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
+	        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+	 
+	        y = ClampAngle(y, yMinLimit, yMaxLimit);
+	 
+	        Quaternion rotation = Quaternion.Euler(y, x, 0);
 			
-		Vector3 targetPosition = rotation * new Vector3(0.0f, 0.0f, -defaultDistance) + target.position + targetLookAtOffset;
+			transform.rotation = rotation;
+	 
+	        defaultDistance = Mathf.Clamp(defaultDistance - Input.GetAxis("Mouse ScrollWheel")*5, distanceMin, distanceMax);
+				
+			Vector3 targetPosition = rotation * new Vector3(0.0f, 0.0f, -defaultDistance) + target.position + targetLookAtOffset;
+				
+	        RaycastHit hit;
 			
-        RaycastHit hit;
-        if (Physics.Linecast (target.position, targetPosition, out hit) && hit.transform != target) {
-                distance = Mathf.Lerp(distance, hit.distance, Time.deltaTime * damping);
-        }
-		else{
-			distance = Mathf.Lerp(distance, defaultDistance, Time.deltaTime * damping);
-		}
-        Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-        Vector3 position = rotation * negDistance + target.position + targetLookAtOffset;
- 
-        transform.rotation = rotation;
-        transform.position = position;
- 
-    }
+			Vector3[] origins = new Vector3[5];
+			origins[0] = targetPosition;
+			origins[1] = Camera.main.ScreenToWorldPoint(new Vector3(0,0, -defaultDistance));
+			origins[2] = Camera.main.ScreenToWorldPoint(new Vector3(0,Screen.height, -defaultDistance));
+			origins[3] = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,0, -defaultDistance));
+			origins[4] = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height, -defaultDistance));
+			
+			distance = defaultDistance;
+			
+			for (int i = 0; i < origins.Length; i++){
+		        if (Physics.Linecast (target.position, origins[i], out hit) && hit.transform.gameObject.layer != 8) {
+		            if (hit.distance < distance) distance = hit.distance;
+		        }
+			}
+			
+			if (distance < distanceMin) distance = distanceMin;
+			
+	        Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+	        Vector3 position = rotation * negDistance + target.position + targetLookAtOffset;
+	 
+	        
+	        transform.position = position;
+	 
+	    }
  
 }
  

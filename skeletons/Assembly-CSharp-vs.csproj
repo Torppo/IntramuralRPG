@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\ISaveService.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\InstanceManager.cs" />
+     <Compile Include="Assets\Scripts\SaveSystem\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\PersistentLoader.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\SaveControl.cs" />
      <Compile Include="Assets\Scripts\SaveSystem\SaveLocation.cs" />
@@ -71,6 +72,7 @@
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\license.txt" />
      <None Include="Assets\Standard Assets\Shaders\DifSpecTransp.shader" />
      <None Include="Assets\Models\SkeletonData\animations.txt" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />

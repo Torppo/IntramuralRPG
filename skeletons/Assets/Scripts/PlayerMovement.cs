@@ -12,9 +12,11 @@ public class PlayerMovement : MonoBehaviour {
 	public Camera cam;
 	
 	private Animator anim;
+	private CharacterController cc;
 	
-	void Start () {
+	void Awake () {
 		anim = GetComponent<Animator>();
+		cc = this.GetComponent<CharacterController>();
 	}
 	
 	void Update () {
@@ -27,7 +29,6 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if (anim.GetCurrentAnimatorStateInfo(0).nameHash != HashIDs.getHitState){	//don't move during hitstun
 			
-			CharacterController cc = this.GetComponent<CharacterController>();
 			Vector3 moveDirection;
 			Vector3 right = cam.transform.right;
 			right.y = 0;
@@ -39,9 +40,6 @@ public class PlayerMovement : MonoBehaviour {
     		Vector3 newDir = Vector3.RotateTowards(transform.forward, moveDirection, step, 0.0F);
 			transform.rotation = Quaternion.LookRotation(newDir);
 			
-			//moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
-			//transform.Rotate(Vector3.up * Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime);
-			//moveDirection = transform.TransformDirection(moveDirection);
 			moveDirection *= moveSpeed;
 			moveDirection *= Time.deltaTime;
 			
