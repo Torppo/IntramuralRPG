@@ -13,7 +13,9 @@ public class FindTarget : MonoBehaviour {
 	}
 	
 	void Update () {
-	
+		if (follow.followTarget && follow.followTarget.GetComponent<CharacterStats>().isAlive == false){
+			follow.followTarget = null;
+		}
 	}
 	
 	void OnTriggerEnter(Collider other){

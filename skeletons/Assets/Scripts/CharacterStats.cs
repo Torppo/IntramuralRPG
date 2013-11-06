@@ -30,4 +30,18 @@ public class CharacterStats : MonoBehaviour {
 	void Update () {
 	
 	}
+	
+	public void SaveData(ISaveService sc){
+		sc.SaveInt(this.gameObject, "isAlive", isAlive ? 1 : 0);
+		sc.SaveInt(this.gameObject, "health", health);
+	}
+	
+	public void LoadData(ISaveService sc){
+		isAlive = sc.LoadInt(this.gameObject, "isAlive") == 1? true : false;
+		health = sc.LoadInt(this.gameObject, "health");
+		if (isAlive == false){
+			this.gameObject.SetActive(false);
+			anim.SetBool("isAlive", false);
+		}
+	}
 }

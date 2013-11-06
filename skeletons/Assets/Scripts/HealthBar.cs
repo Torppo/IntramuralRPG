@@ -8,6 +8,8 @@ public class HealthBar : MonoBehaviour {
 	public Texture2D emptyTex;
 	public Texture2D fullTex;
 	
+	public float restartCountdown = 3f;
+	
 	public CharacterStats hero;
 	
 	void OnGUI() {
@@ -30,5 +32,14 @@ public class HealthBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		barDisplay = hero.getHealth();
+		if (hero.isAlive == false){
+			GameObject.FindGameObjectWithTag("ScreenFader").GetComponent<Fader>().fadeToBlack = true;
+			if (restartCountdown >= 0f){
+				restartCountdown -= Time.deltaTime;	
+			}
+			else {
+				Application.LoadLevel(Application.loadedLevel);	
+			}
+		}
 	}
 }

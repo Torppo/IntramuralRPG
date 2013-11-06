@@ -10,7 +10,7 @@ public class Follow : MonoBehaviour {
 	
 	public float moveSpeed = 2f;	//the follow speed
 	public float turnSpeed = 10f;	//the turning speed
-	public float stopDistance = 1f;	//how close the object should get to the player before stopping
+	public float stopDistance = 0.5f;	//how close the object should get to the player before stopping
 	
 	private Animator anim;
 	private CharacterStats car;
@@ -49,6 +49,11 @@ public class Follow : MonoBehaviour {
 		}
 		else {
 			anim.SetFloat(HashIDs.movementSpeedFloat, 0f);
+			anim.SetBool(HashIDs.strikeAnimBool, true);
+		}
+		
+		if (anim.GetCurrentAnimatorStateInfo(1).nameHash == HashIDs.attackState){
+			anim.SetBool(HashIDs.strikeAnimBool, false);
 		}
 	}
 	
