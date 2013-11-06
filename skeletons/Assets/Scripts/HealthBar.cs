@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour {
 	public Texture2D emptyTex;
 	public Texture2D fullTex;
 	
-	public HeroMain hero;
+	public CharacterStats hero;
 	
 	void OnGUI() {
 		//draw the background:

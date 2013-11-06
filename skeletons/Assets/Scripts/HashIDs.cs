@@ -9,5 +9,6 @@ public class HashIDs : MonoBehaviour {
 	
 	public static int attackState = Animator.StringToHash("Attack Layer.attack");	//attack animation state
 	public static int getHitState = Animator.StringToHash("Base Layer.gethit");		//hit animation state
+	public static int dyingState = Animator.StringToHash("Base Layer.death");		//death animation state
 	
 }

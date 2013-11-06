@@ -13,15 +13,17 @@ public class Follow : MonoBehaviour {
 	public float stopDistance = 1f;	//how close the object should get to the player before stopping
 	
 	private Animator anim;
+	private CharacterStats car;
 	
 	void Start () {
 		anim = GetComponent<Animator>();
+		car = GetComponent<CharacterStats>();
 	}
 	
 	void Update () {
 		CharacterController cc = this.GetComponent<CharacterController>();
 		
-		if (followTarget == null){
+		if (followTarget == null || car.isAlive == false){
 			//stop if there's no target
 			anim.SetFloat(HashIDs.movementSpeedFloat, 0f);
 			return;
