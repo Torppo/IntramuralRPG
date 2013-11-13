@@ -22,7 +22,7 @@ public class MouseOrbitImproved : MonoBehaviour {
     float x = 0.0f;
     float y = 0.0f;
 	
-	public float mouseSensitivity;
+	public float mouseSensitivity = 4.0f;
 	
  
 	// Use this for initialization
