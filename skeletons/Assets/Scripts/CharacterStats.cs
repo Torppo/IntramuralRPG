@@ -8,12 +8,15 @@ public class CharacterStats : MonoBehaviour {
 	public bool isAlive = true;
 	private Animator anim;
 	
+	public ParticleSystem bloodEmitter;
+	
 	public float getHealth(){
 		return (float) health / maxHealth;
 	}
 	public void DealDamage(int damage) {
 		if(isAlive) {
 			health -= damage;
+			bloodEmitter.Play();
 			if(health <= 0) {
 				isAlive = false;
 				anim.SetBool("isAlive", false);

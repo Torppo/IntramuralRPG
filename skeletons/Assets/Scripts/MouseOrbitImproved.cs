@@ -22,6 +22,8 @@ public class MouseOrbitImproved : MonoBehaviour {
     float x = 0.0f;
     float y = 0.0f;
 	
+	public float mouseSensitivity;
+	
  
 	// Use this for initialization
 	void Awake () {
@@ -36,8 +38,8 @@ public class MouseOrbitImproved : MonoBehaviour {
  
     void LateUpdate () {
 	    if (target) {
-	        x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-	        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+	        x += Input.GetAxis("Mouse X") * xSpeed * distance * mouseSensitivity * Time.deltaTime;
+	        y -= Input.GetAxis("Mouse Y") * ySpeed * mouseSensitivity * Time.deltaTime;
 	 
 	        y = ClampAngle(y, yMinLimit, yMaxLimit);
 	 
