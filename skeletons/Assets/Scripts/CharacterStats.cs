@@ -19,7 +19,7 @@ public class CharacterStats : MonoBehaviour {
 			bloodEmitter.Play();
 			if(health <= 0) {
 				isAlive = false;
-				anim.SetBool("isAlive", false);
+				anim.SetBool(HashIDs.isAliveBool, false);
 			}
 		}
 	}
@@ -35,16 +35,16 @@ public class CharacterStats : MonoBehaviour {
 	}
 	
 	public void SaveData(ISaveService sc){
-		sc.SaveInt(this.gameObject, "isAlive", isAlive ? 1 : 0);
-		sc.SaveInt(this.gameObject, "health", health);
+		sc.SaveInt(this.gameObject, "stats.isAlive", isAlive ? 1 : 0);
+		sc.SaveInt(this.gameObject, "stats.health", health);
 	}
 	
 	public void LoadData(ISaveService sc){
-		isAlive = sc.LoadInt(this.gameObject, "isAlive") == 1? true : false;
-		health = sc.LoadInt(this.gameObject, "health");
+		isAlive = sc.LoadInt(this.gameObject, "stats.isAlive") == 1? true : false;
+		health = sc.LoadInt(this.gameObject, "stats.health");
 		if (isAlive == false){
 			this.gameObject.SetActive(false);
-			anim.SetBool("isAlive", false);
+			anim.SetBool("stats.isAlive", false);
 		}
 	}
 }

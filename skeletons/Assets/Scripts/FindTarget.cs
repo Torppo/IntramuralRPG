@@ -19,13 +19,13 @@ public class FindTarget : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == Tags.player){
 			follow.followTarget = other.gameObject;
 		}
 	}
 	
 	void OnTriggerExit(Collider other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == Tags.player){
 			follow.followTarget = null;
 		}
 	}

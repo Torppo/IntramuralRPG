@@ -8,9 +8,9 @@ public class EndScene : MonoBehaviour {
 	private bool endTriggered = false;
 
 	void OnTriggerEnter(Collider other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == Tags.player){
 			wintext.gameObject.SetActive(true);
-			GameObject.FindGameObjectWithTag("ScreenFader").GetComponent<Fader>().fadeToBlack = true;
+			GameObject.FindGameObjectWithTag(Tags.screenFader).GetComponent<Fader>().fadeToBlack = true;
 			endTriggered = true;
 		}
 	}

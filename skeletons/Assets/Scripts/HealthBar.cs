@@ -33,7 +33,7 @@ public class HealthBar : MonoBehaviour {
 	void Update () {
 		barDisplay = hero.getHealth();
 		if (hero.isAlive == false){
-			GameObject.FindGameObjectWithTag("ScreenFader").GetComponent<Fader>().fadeToBlack = true;
+			GameObject.FindGameObjectWithTag(Tags.screenFader).GetComponent<Fader>().fadeToBlack = true;
 			if (restartCountdown >= 0f){
 				restartCountdown -= Time.deltaTime;	
 			}

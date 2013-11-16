@@ -22,7 +22,7 @@ public class GetHit : MonoBehaviour {
 	
 	public void Update(){
 		if(anim.GetCurrentAnimatorStateInfo(0).nameHash == HashIDs.dyingState) {
-			anim.SetBool("isAlive", true);
+			anim.SetBool(HashIDs.isAliveBool, true);
 		}
 		//reset hit trigger to prevent animation looping
 		if (anim.GetCurrentAnimatorStateInfo(0).nameHash == HashIDs.getHitState){

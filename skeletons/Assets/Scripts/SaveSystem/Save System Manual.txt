@@ -1,0 +1,61 @@
+SAVE SYSTEM MANUAL
+
+0. General
+
+You can assign the SaveLocation script to an object to make it automatically save its location (as long as the object follows the rules in sections 3 & 4)
+The SaveLocation script also shows how to implement the save and load methods in practice.
+
+1. Making scripts save
+
+In order to save the state of a script, the script should have two methods: public void SaveData(ISaveService sc) and public void LoadData(ISaveService sc)
+The SaveData method should save the fields that need to be saved by calling the three provided save methods of the parameter object sc.
+The methods are SaveString, SaveInt and SaveFloat and what they do should be obvious.
+Each of the methods takes three parameters:
+
+-a GameObject - no other saveable object in the scene should have the same name, so it's best to use the parent object in the hierarchy (right under SaveableObjects)
+for instance, if the hierarchy looks like this:
+
+SomeOtherObject
+SaveableObjects
+|>Child001
+| |>utility1
+| |>utility2
+|>Child002
+  |>utility1
+  |>utility2
+SomeOtherObject
+
+then scripts attached directly to Child001 and Child002 should pass 'this.gameObject' as the parameter, 
+while scripts attached to any of the utility objects should pass 'transform.parent.gameObject',
+because the names utility1 and utility2 are not unique in the hierarchy while Child001 and Child002 are
+
+-a name string that will identify the saved variable. No other script passing the same GameObject should also pass the same name.
+To avoid conflicts I recommend using names like 'stats.health' or 'location.position.x' or 'weapon.damage'
+
+-the value of the variable you want to save
+
+2. Making scripts load
+
+To load the saved state, you should implement the LoadData method as mentioned above.
+In the method, you can load saved variables using sc's LoadString, LoadInt and LoadFloat functions.
+The two parameters of these methods correspond to the first two parameters of the save functions described above. You should pass the EXACT same parameters as you did when saving.
+The methods return the saved values as their return values and you should assign them back to the appropriate variables.
+
+3. Objects that are pre-placed into the scene
+
+Objects that have been placed into the scene in the editor need to follow these rules in order to be saved properly:
+-the object should be a child object of the "SaveableObjects" object
+-the object should have a different name than all other direct children of Saveable Objects
+
+4. Objects that are instantiated at run-time
+
+Objects that are instantiated need to follow these rules in order to be saved properly:
+-the prefab of the object should be placed in the Prefabs list on the InstanceManager script on the InstanceManager object 
+(for convenience, place it on the InstanceManager prefab so you don't have to re-add it in every scene)
+-the prefab should have a different name than the the other prefabs in the list
+-to instantiate the prefab, call 'InstanceManager.manager.Instantiate(name, location, rotation)'
+-the name parameter should be the name of the prefab and the location and rotation should be the location Vector3 and rotation Quaternion of the new object
+
+5. Setting up a new scene
+
+-drag the InstanceManager and SaveableObjects prefabs from Prefabs/SaveSystem into the scene
