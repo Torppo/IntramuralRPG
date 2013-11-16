@@ -16,6 +16,7 @@ public class GetHit : MonoBehaviour {
 		if (!startingHit && !(anim.GetCurrentAnimatorStateInfo(0).nameHash == HashIDs.getHitState)){
 			anim.SetBool(HashIDs.getHitAnimBool, true);
 			startingHit = true;
+			audio.Play();
 			car.DealDamage(car.damage);
 		}
 	}
