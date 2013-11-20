@@ -13,10 +13,12 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private Animator anim;
 	private CharacterController cc;
+	private CharacterStats car;
 	
 	void Awake () {
 		anim = GetComponent<Animator>();
 		cc = this.GetComponent<CharacterController>();
+		car = GetComponent<CharacterStats>();
 	}
 	
 	void Update () {
@@ -27,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void Move(float h, float v){
 		
-		if (anim.GetCurrentAnimatorStateInfo(0).nameHash != HashIDs.getHitState){	//don't move during hitstun
+		if (anim.GetCurrentAnimatorStateInfo(0).nameHash != HashIDs.getHitState && car.isAlive){	//don't move during hitstun
 			
 			Vector3 moveDirection;
 			Vector3 right = cam.transform.right;

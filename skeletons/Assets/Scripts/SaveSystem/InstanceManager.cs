@@ -29,7 +29,7 @@ public class InstanceManager : MonoBehaviour, ISaveService {
 		
 		GameObject instance = GameObject.Instantiate(prefabDict[name], loc, rot) as GameObject;
 		instance.transform.parent = this.transform;
-		instance.name = instance.name.Remove(instance.name.Length - 7);
+		instance.name = instance.name.Remove(instance.name.Length - 7); //remove "clone" from the name to save properly
 		return instance;
 	}
 	
