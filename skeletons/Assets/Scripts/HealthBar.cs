@@ -7,6 +7,7 @@ public class HealthBar : MonoBehaviour {
 	public Vector2 size = new Vector2(60,20);
 	public Texture2D emptyTex;
 	public Texture2D fullTex;
+	public GUIStyle style;
 	
 	public float restartCountdown = 3f;
 	
@@ -15,11 +16,15 @@ public class HealthBar : MonoBehaviour {
 	void OnGUI() {
 		//draw the background:
 		GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
-		GUI.Box(new Rect(0,0, size.x, size.y), emptyTex);
+		//GUI.skin.box.stretchHeight = true;
+		//GUI.skin.box.stretchWidth = true;
+		GUI.Box(new Rect(0,0, size.x, size.y), emptyTex,style);
 		
 		//draw the filled-in part:
 		GUI.BeginGroup(new Rect(0,0, size.x * barDisplay, size.y));
-		GUI.Box(new Rect(0,0, size.x, size.y), fullTex);
+		//GUI.skin.box.stretchHeight = true;
+		//GUI.skin.box.stretchWidth = true;
+		GUI.Box(new Rect(0,0, size.x, size.y), fullTex, style);
 		GUI.EndGroup();
 		GUI.EndGroup();
 	}
