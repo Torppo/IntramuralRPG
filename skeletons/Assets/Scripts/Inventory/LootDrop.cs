@@ -9,6 +9,8 @@ public class LootDrop : MonoBehaviour {
 	
 	public List<string> items;
 	
+	public List<GameObject> disableOnDrop;
+	
 	private CharacterStats car;
 	private bool hasDropped = false;
 	
@@ -28,6 +30,11 @@ public class LootDrop : MonoBehaviour {
 			}
 			for (int i = 0; i < items.Count; i++){
 				InstanceManager.manager.Instantiate(items[i], transform.position, transform.rotation);
+			}
+			if (disableOnDrop != null){
+				for (int i = 0; i < disableOnDrop.Count; i++){
+					disableOnDrop[i].SetActive(false);
+				}
 			}
 			this.enabled = false;
 		}

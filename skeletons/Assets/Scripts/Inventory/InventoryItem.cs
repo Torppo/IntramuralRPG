@@ -5,6 +5,8 @@ public class InventoryItem {
 	
 	public static string gold = "Gold";
 	public static string healthPot = "Health Potion";
+	public static string staff = "Element Staff";
+	public static string falchion = "Falchion";
 	
 	public string name;
 	private int _amount;
@@ -41,6 +43,17 @@ public class InventoryItem {
 			i.Use = i.HealPlayer;
 			return i;
 		}
+		if (name == falchion){
+			InventoryItem i = new InventoryItem(falchion);
+			i.Use = SwitchToFalchion;
+			return i;
+		}
+		if (name == staff){
+			InventoryItem i = new InventoryItem(staff);
+			i.Use = SwitchToStaff;
+			return i;
+		}
+		
 		throw new System.ArgumentException("Unknown item name: " + name);
 	}
 	
@@ -51,5 +64,17 @@ public class InventoryItem {
 		if (stats.health == stats.maxHealth) return;
 		stats.health = System.Math.Min(stats.maxHealth, stats.health + 25);
 		this._amount--;
+	}
+	private static void SwitchToFalchion() {
+		WeaponSwitch ws = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<WeaponSwitch>();
+		Shooting shot = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<Shooting>();
+		ws.SelectWeapon(WeaponSwitch.falchion);
+		shot.projectile = null;
+	}
+	private static void SwitchToStaff() {
+		WeaponSwitch ws = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<WeaponSwitch>();
+		Shooting shot = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<Shooting>();
+		ws.SelectWeapon(WeaponSwitch.elementStaff);
+		shot.projectile = "PlayerFireball";
 	}
 }

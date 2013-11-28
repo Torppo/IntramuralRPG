@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		items = new List<InventoryItem>();
+		AddItems(InventoryItem.falchion, 1);
 	}
 	
 	// Update is called once per frame

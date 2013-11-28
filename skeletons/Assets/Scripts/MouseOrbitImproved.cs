@@ -49,16 +49,17 @@ public class MouseOrbitImproved : MonoBehaviour {
 	 
 	        defaultDistance = Mathf.Clamp(defaultDistance - Input.GetAxis("Mouse ScrollWheel")*5, distanceMin, distanceMax);
 				
-			Vector3 targetPosition = rotation * new Vector3(0.0f, 0.0f, -defaultDistance) + target.position + targetLookAtOffset;
+			Vector3 targetPosition = rotation * new Vector3(0.0f, 0.0f, -defaultDistance) + target.position;
+			targetPosition += rotation * targetLookAtOffset;
 				
 	        RaycastHit hit;
 			
-			Vector3[] origins = new Vector3[5];
+			Vector3[] origins = new Vector3[3];
 			origins[0] = targetPosition;
 			origins[1] = Camera.main.ScreenToWorldPoint(new Vector3(0,0, -defaultDistance));
-			origins[2] = Camera.main.ScreenToWorldPoint(new Vector3(0,Screen.height, -defaultDistance));
-			origins[3] = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,0, -defaultDistance));
-			origins[4] = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height, -defaultDistance));
+			origins[2] = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,0, -defaultDistance));
+			//origins[3] = Camera.main.ScreenToWorldPoint(new Vector3(0,Screen.height, -defaultDistance));
+			//origins[4] = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height, -defaultDistance));
 			
 			distance = defaultDistance;
 			
@@ -71,7 +72,8 @@ public class MouseOrbitImproved : MonoBehaviour {
 			if (distance < distanceMin) distance = distanceMin;
 			
 	        Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-	        Vector3 position = rotation * negDistance + target.position + targetLookAtOffset;
+	        Vector3 position = rotation * negDistance + target.position;
+			position += rotation * targetLookAtOffset;
 	 
 	        
 	        transform.position = position;
