@@ -72,6 +72,7 @@ public class PauseMenu : MonoBehaviour {
 					(Screen.width-240)/3,
 					Screen.height/10),
 					inventory.items[i].name + ": " + inventory.items[i].amount)) {
+					
 					if (inventory.items[i].amount > 0) inventory.items[i].Use();
 				}
 			}

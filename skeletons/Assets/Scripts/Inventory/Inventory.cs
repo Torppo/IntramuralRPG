@@ -48,8 +48,8 @@ public class Inventory : MonoBehaviour {
 		return true;
 	}
 	
-	public void Contains(string item, int quantity){
-		Contains(InventoryItem.FromString(item), quantity);
+	public bool Contains(string item, int quantity){
+		return Contains(InventoryItem.FromString(item), quantity);
 	}
 	
 	public int Amount(InventoryItem item){
@@ -58,8 +58,8 @@ public class Inventory : MonoBehaviour {
 		return items[index].amount;
 	}
 	
-	public void Amount(string item){
-		Amount(InventoryItem.FromString(item));
+	public int Amount(string item){
+		return Amount(InventoryItem.FromString(item));
 	}
 	
 	public void RemoveItems(InventoryItem item, int quantity){
