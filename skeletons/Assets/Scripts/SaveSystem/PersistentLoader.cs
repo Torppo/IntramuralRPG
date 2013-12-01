@@ -44,4 +44,12 @@ public class PersistentLoader : MonoBehaviour {
 			Time.timeScale = 1.0f;	//Unpause the game
 		}
 	}
+	
+	public bool Exist(string saveSlot){
+		if (!PlayerPrefs.HasKey(saveSlot + "._level")){
+			return false;
+		}
+		else
+			return true;
+	}
 }

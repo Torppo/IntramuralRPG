@@ -10,8 +10,11 @@ public class PauseMenu : MonoBehaviour {
 	public bool inv = false;	//is the inventory open?
 	public bool menu = false;	//is the pause menu open?
 	
+	bool saveExists = false;
+	
 	private MouseOrbitImproved moi;
 	private Inventory inventory;
+	
 		
 	void Awake(){
 		moi = GetComponent<MouseOrbitImproved>();
@@ -49,6 +52,12 @@ public class PauseMenu : MonoBehaviour {
 	
 	//Open a menu
 	private void OpenMenu(){
+		if (GameObject.FindGameObjectWithTag("PersistentLoader").GetComponent<PersistentLoader>().Exist("slot1")){
+			saveExists = true;
+		}
+		else {
+			saveExists = false;
+		}
 		Time.timeScale = 0.0f;
 		paused = true;
 		moi.enabled = false;
@@ -68,15 +77,36 @@ public class PauseMenu : MonoBehaviour {
 			//save button
 			if (GUI.Button(new Rect(120,Screen.height/6,Screen.width-240,Screen.height/6), "Save")) {
 				GameObject.FindGameObjectWithTag(Tags.saveControl).GetComponent<SaveControl>().DoSave();
+				saveExists = true;
+			}
+			if (saveExists){ 
+				GUI.enabled = true; 
+			}
+			else{ 
+				GUI.enabled = false; // to disable Load button if there is no save game to load
 			}
 			//load button
 			if (GUI.Button(new Rect(120,Screen.height/3,Screen.width-240,Screen.height/6), "Load")) { 
 				GameObject.FindGameObjectWithTag(Tags.persistentLoader).GetComponent<PersistentLoader>().LoadGame("slot1");
 			}
+
+			GUI.enabled = true; 
+			
+			if (saveExists){ 
+				GUI.enabled = true; 
+			}
+			else{ 
+				GUI.enabled = false; // to disable delete saves button if there is no save game to load
+			}
 			//delete saves button
-			if (GUI.Button(new Rect(120,Screen.height/2,Screen.width-240,Screen.height/6), "Delete Save Data")) PlayerPrefs.DeleteAll();
-			//exit button
-			if (GUI.Button(new Rect(120,2*Screen.height/3,Screen.width-240,Screen.height/6), "Quit")) Application.Quit();
+			if (GUI.Button(new Rect(120,Screen.height/2,Screen.width-240,Screen.height/6), "Delete Save Data")){
+				PlayerPrefs.DeleteAll();
+				saveExists = false;
+			}
+			GUI.enabled = true;
+			//exit to main menu button
+			if (GUI.Button(new Rect(120,2*Screen.height/3,Screen.width-240,Screen.height/6), "Quit to Main Menu")) Application.LoadLevel("MainMenu");
+
 		}
 		
 		//Inventory open
