@@ -12,10 +12,7 @@ public class VendingMachine : MonoBehaviour {
 	
 	void Awake(){
 		shoptext.text = buyPrompt;
-		Vector3 newpos = shoptext.transform.InverseTransformPoint(textpos);
-		Debug.Log(newpos);
-		shoptext.transform.localPosition = newpos;
-		Debug.Log(shoptext.transform.position);
+		shoptext.transform.position = textpos;
 	}
 	
 	// Use this for initialization
@@ -23,7 +20,6 @@ public class VendingMachine : MonoBehaviour {
 		if (other.tag != Tags.player) return;
 		shoptext.enabled = true;
 		
-		Debug.Log("trigger");
 		if (Input.GetKeyDown(KeyCode.E)){
 			Inventory inv = other.GetComponent<Inventory>();
 			if (inv.Contains(InventoryItem.gold, 10)){
