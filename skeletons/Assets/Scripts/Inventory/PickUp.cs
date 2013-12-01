@@ -31,4 +31,14 @@ public class PickUp : MonoBehaviour {
 	void OnTriggerExit (Collider other) {
 		if (other.tag == Tags.player) light.intensity = 0f;
 	}
+	
+	public void SaveData(ISaveService sc){
+		sc.SaveString(owner, "pickup.item", item);
+		sc.SaveInt(owner, "pickup.quantity", quantity);
+	}
+	
+	public void LoadData(ISaveService sc){
+		item = sc.LoadString(owner, "pickup.item");
+		quantity = sc.LoadInt(owner, "pickup.quantity");
+	}
 }

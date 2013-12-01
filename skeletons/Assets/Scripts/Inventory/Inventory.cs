@@ -68,4 +68,25 @@ public class Inventory : MonoBehaviour {
 	public void RemoveItems(string item, int quantity){
 		RemoveItems(InventoryItem.FromString(item), quantity);
 	}
+	
+	public void SaveData(ISaveService sc){
+		sc.SaveInt(this.gameObject, "inventory.count", items.Count);
+		for (int i = 0; i< items.Count; i++){
+			sc.SaveString(this.gameObject, "inventory.items."+ i +".name", items[i].name);
+			sc.SaveInt(this.gameObject, "inventory.items."+ i +".amount", items[i].amount);
+		}
+	}
+	
+	public void LoadData(ISaveService sc){
+		items = new List<InventoryItem>();
+		int count = sc.LoadInt(this.gameObject, "inventory.count");
+		for (int i = 0; i< count; i++){
+			string name = sc.LoadString(this.gameObject, "inventory.items."+ i +".name");
+			int amount = sc.LoadInt(this.gameObject, "inventory.items."+ i +".amount");
+			
+			InventoryItem it = InventoryItem.FromString(name);
+			it.amount = amount;
+			items.Add(it);
+		}
+	}
 }

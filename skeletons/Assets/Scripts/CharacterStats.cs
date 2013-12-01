@@ -55,7 +55,7 @@ public class CharacterStats : MonoBehaviour {
 		health = sc.LoadInt(this.gameObject, "stats.health");
 		if (isAlive == false){
 			this.gameObject.SetActive(false);
-			anim.SetBool("stats.isAlive", false);
+			anim.SetBool(HashIDs.isAliveBool, false);
 		}
 	}
 }
