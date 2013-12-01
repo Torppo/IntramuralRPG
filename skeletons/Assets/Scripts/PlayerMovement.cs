@@ -62,9 +62,12 @@ public class PlayerMovement : MonoBehaviour {
 	void Animate (float v, bool striking){
 		anim.SetFloat(HashIDs.movementSpeedFloat, v);
 		anim.SetBool(HashIDs.strikeAnimBool, striking);
-		if (shot != null && v == 0 && (anim.GetCurrentAnimatorStateInfo(1).nameHash == HashIDs.attackState || striking)){
+		if (shot != null && v == 0 && (anim.GetCurrentAnimatorStateInfo(1).nameHash == HashIDs.attackState)){
 			Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2));
 			shot.Shoot(ray.GetPoint(10f));
+		}
+		else {
+			shot.Reset();
 		}
 	}
 }

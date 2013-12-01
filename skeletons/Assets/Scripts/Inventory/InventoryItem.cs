@@ -3,13 +3,13 @@ using System.Collections;
 
 public class InventoryItem {
 	
-	public static string gold = "Gold";
-	public static string healthPot = "Health Potion";
-	public static string staff = "Element Staff";
-	public static string falchion = "Falchion";
+	public static string gold = "Gold";	//Money name
+	public static string healthPot = "Health Potion";	//Health potion name
+	public static string staff = "Element Staff";	//Fireball staff name
+	public static string falchion = "Falchion";	//Starting sword name
 	
-	public string name;
-	private int _amount;
+	public string name;	//the name of this item
+	private int _amount;	//The quantity of this item in inventory
 	public int amount {
 		get{return this._amount;}
 		set {
@@ -30,9 +30,12 @@ public class InventoryItem {
 	
 	public delegate void UseCallback();
 	
-	public UseCallback Use = Empty;
+	public UseCallback Use = Empty;	//What does this item do when used from inventory
 	
-	
+	/*
+	 * Creates an inventory item from a string.
+	 * name: the name of the item to be created. Acceptable names are static strings in this class.
+	 */
 	public static InventoryItem FromString(string name){
 		if (name == gold){
 			InventoryItem i = new InventoryItem(gold);
@@ -57,20 +60,31 @@ public class InventoryItem {
 		throw new System.ArgumentException("Unknown item name: " + name);
 	}
 	
-	
+	/*
+	 * Blank use method - "this item can't be used"
+	 */
 	private static void Empty() {}
+	/*
+	 * Healing potion use method - restores 25 life up to max and consumes a potion
+	 */
 	private void HealPlayer() {
 		CharacterStats stats = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<CharacterStats>();
 		if (stats.health == stats.maxHealth) return;
 		stats.health = System.Math.Min(stats.maxHealth, stats.health + 25);
 		this._amount--;
 	}
+	/*
+	 * Falchion use method - equip
+	 */
 	private static void SwitchToFalchion() {
 		WeaponSwitch ws = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<WeaponSwitch>();
 		Shooting shot = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<Shooting>();
 		ws.SelectWeapon(WeaponSwitch.falchion);
 		shot.projectile = null;
 	}
+	/*
+	 * Element staff use method - equip
+	 */
 	private static void SwitchToStaff() {
 		WeaponSwitch ws = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<WeaponSwitch>();
 		Shooting shot = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<Shooting>();

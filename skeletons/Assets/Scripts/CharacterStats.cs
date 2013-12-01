@@ -1,18 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * The script that stores a character's stats.
+ */
 public class CharacterStats : MonoBehaviour {
-	public int maxHealth = 100;
-	public int health = 50;
-	public int damage = 10;
-	public bool isAlive = true;
-	private Animator anim;
+	public int maxHealth = 100;	//This character's maximum health
+	public int health = 50;	//This character's current health
+	public int damage = 10;	//The damage that this character takes from attacks (should maybe be on weapon?)
+	public bool isAlive = true;	//Is this character alive?
+	private Animator anim;	//This character's animation controller
 	
-	public ParticleSystem bloodEmitter;
+	public ParticleSystem bloodEmitter;	//Emitter for effects when taking damage
 	
+	/*
+	 * Returns this character's health in relation to max health
+	 */
 	public float getHealth(){
 		return (float) health / maxHealth;
 	}
+	
+	/*
+	 * Damages this character.
+	 * Parameter damage: the amount of damage dealt
+	 */
 	public void DealDamage(int damage) {
 		if(isAlive) {
 			health -= damage;

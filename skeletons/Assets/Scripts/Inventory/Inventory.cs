@@ -3,18 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
-
-	public List<InventoryItem> items;
+	
+	public List<InventoryItem> items;	//The list of items in player inventory
 	
 	// Use this for initialization
 	void Awake () {
 		items = new List<InventoryItem>();
-		AddItems(InventoryItem.falchion, 1);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		AddItems(InventoryItem.falchion, 1); //Always start with sword
 	}
 	
 	public void AddItems(InventoryItem item, int quantity){
