@@ -3,10 +3,10 @@ using System.Collections;
 
 public class InventoryItem {
 	
-	public static string gold = "Gold";	//Money name
-	public static string healthPot = "Health Potion";	//Health potion name
-	public static string staff = "Element Staff";	//Fireball staff name
-	public static string falchion = "Falchion";	//Starting sword name
+	public static readonly string gold = "Gold";	//Money name
+	public static readonly string healthPot = "Health Potion";	//Health potion name
+	public static readonly string staff = "Element Staff";	//Fireball staff name
+	public static readonly string falchion = "Falchion";	//Starting sword name
 	
 	public string name;	//the name of this item
 	private int _amount;	//The quantity of this item in inventory

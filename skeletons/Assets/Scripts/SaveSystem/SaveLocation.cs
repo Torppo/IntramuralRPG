@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Saves the transform of the object this script is attached to
+ */
 public class SaveLocation : MonoBehaviour {
 	
 	

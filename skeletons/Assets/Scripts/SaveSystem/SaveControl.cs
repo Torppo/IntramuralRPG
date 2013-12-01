@@ -3,11 +3,14 @@ using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+/*
+ * Object that manages saving and loading GameObjects that are in the scene by default
+ */
 public class SaveControl : MonoBehaviour, ISaveService {
 	
-	public static SaveControl manager;
+	public static SaveControl manager;	//Singleton instance
 	
-	public string slotname = "slot1";
+	public string slotname = "slot1";	//The slot we save to and load from
 	
 	// Use this for initialization
 	void Awake () {
@@ -16,6 +19,7 @@ public class SaveControl : MonoBehaviour, ISaveService {
 	
 	// Update is called once per frame
 	void Update () {
+		//Keyboard commands
 		if (Input.GetKeyDown(KeyCode.F1)) DoSave();
 		if (Input.GetKeyDown(KeyCode.F2)) { 
 			GameObject.FindGameObjectWithTag("PersistentLoader").GetComponent<PersistentLoader>().LoadGame(slotname);
@@ -23,15 +27,22 @@ public class SaveControl : MonoBehaviour, ISaveService {
 		if (Input.GetKeyDown(KeyCode.F12)) PlayerPrefs.DeleteAll();
 	}
 	
+	//Save current state to the selected slot
 	public void DoSave(){
+		//Save states of all children
 		this.BroadcastMessage("SaveData", this);
+		//Save states of instances
 		InstanceManager.manager.SaveData();
+		//Save index of current scene
 		PlayerPrefs.SetInt(slotname + "._level", Application.loadedLevel);
 
 	}
 	
+	//Load state from selected slot
 	public void DoLoad(){
+		//Load children
 		this.BroadcastMessage("LoadData", this);
+		//Load instances
 		InstanceManager.manager.LoadData();
 	}
 	
