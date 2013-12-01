@@ -5,17 +5,25 @@ public class VendingMachine : MonoBehaviour {
 	
 	public GUIText shoptext;
 	
+	public Vector3 textpos;
+	
 	public int potionCost = 10;
 	public string buyPrompt = "(E) Buy healing potion - 10 gold";
 	
 	void Awake(){
 		shoptext.text = buyPrompt;
+		Vector3 newpos = shoptext.transform.InverseTransformPoint(textpos);
+		Debug.Log(newpos);
+		shoptext.transform.localPosition = newpos;
+		Debug.Log(shoptext.transform.position);
 	}
 	
 	// Use this for initialization
 	void OnTriggerStay (Collider other) {
 		if (other.tag != Tags.player) return;
 		shoptext.enabled = true;
+		
+		Debug.Log("trigger");
 		if (Input.GetKeyDown(KeyCode.E)){
 			Inventory inv = other.GetComponent<Inventory>();
 			if (inv.Contains(InventoryItem.gold, 10)){
