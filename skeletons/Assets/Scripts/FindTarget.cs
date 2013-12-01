@@ -8,11 +8,12 @@ public class FindTarget : MonoBehaviour {
 	
 	private Follow follow; //the parent object's follow script
 	
-	void Start () {
+	void Awake () {
 		follow = transform.parent.GetComponent<Follow>();
 	}
 	
 	void Update () {
+		//Stop following dead player
 		if (follow.followTarget && follow.followTarget.GetComponent<CharacterStats>().isAlive == false){
 			follow.followTarget = null;
 		}

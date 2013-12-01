@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Handles weapon collisions
+ */
 public class Weapon : MonoBehaviour {
 	
 	public GameObject owner;	//the character holding this weapon

@@ -2,11 +2,11 @@
 using System.Collections;
 
 /*
- * Script for making an object with a character controller follow another object
+ * Script for making an object with a character controller follow and attack another object
  */
 public class Follow : MonoBehaviour {
 	
-	public GameObject followTarget;
+	public GameObject followTarget;	//The character we're following
 	
 	public float moveSpeed = 2f;	//the follow speed
 	public float turnSpeed = 10f;	//the turning speed
@@ -16,15 +16,16 @@ public class Follow : MonoBehaviour {
 	private Animator anim;
 	private CharacterStats car;
 	private Shooting shot;
+	private CharacterController cc;
 	
 	void Start () {
 		anim = GetComponent<Animator>();
 		car = GetComponent<CharacterStats>();
 		shot = GetComponent<Shooting>();
+		cc = this.GetComponent<CharacterController>();
 	}
 	
 	void Update () {
-		CharacterController cc = this.GetComponent<CharacterController>();
 		
 		if (followTarget == null || car.isAlive == false){
 			//stop if there's no target
@@ -51,16 +52,19 @@ public class Follow : MonoBehaviour {
 			anim.SetFloat(HashIDs.movementSpeedFloat, moveSpeed);
 			
 		}
+		//Attack if we're next to the target
 		else {
 			anim.SetFloat(HashIDs.movementSpeedFloat, 0f);
 			anim.SetBool(HashIDs.strikeAnimBool, true);
 			
+			//Shoot if we have a shot
 			if (shot != null){
 				shot.Shoot(followTarget.transform.position);
 			}
 		}
 		
 		if (anim.GetCurrentAnimatorStateInfo(1).nameHash == HashIDs.attackState){
+			//reset attack animation trigger
 			anim.SetBool(HashIDs.strikeAnimBool, false);
 		}
 			

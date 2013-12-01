@@ -67,11 +67,11 @@ public class PauseMenu : MonoBehaviour {
 			GUI.Box(new Rect(100, 50, Screen.width - 200, Screen.height - 100), "Pause Menu");
 			//save button
 			if (GUI.Button(new Rect(120,Screen.height/6,Screen.width-240,Screen.height/6), "Save")) {
-				GameObject.FindGameObjectWithTag("SaveControl").GetComponent<SaveControl>().DoSave();
+				GameObject.FindGameObjectWithTag(Tags.saveControl).GetComponent<SaveControl>().DoSave();
 			}
 			//load button
 			if (GUI.Button(new Rect(120,Screen.height/3,Screen.width-240,Screen.height/6), "Load")) { 
-				GameObject.FindGameObjectWithTag("PersistentLoader").GetComponent<PersistentLoader>().LoadGame("slot1");
+				GameObject.FindGameObjectWithTag(Tags.persistentLoader).GetComponent<PersistentLoader>().LoadGame("slot1");
 			}
 			//delete saves button
 			if (GUI.Button(new Rect(120,Screen.height/2,Screen.width-240,Screen.height/6), "Delete Save Data")) PlayerPrefs.DeleteAll();

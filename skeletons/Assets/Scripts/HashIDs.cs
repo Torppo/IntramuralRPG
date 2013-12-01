@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * HashIDs for using animators
+ */
 public class HashIDs : MonoBehaviour {
 
 	public static int movementSpeedFloat = Animator.StringToHash("speed");	//object movement speed

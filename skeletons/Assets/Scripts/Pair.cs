@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * It's a tuple
+ */
 public class Pair<T, U> {
 
     public Pair() {

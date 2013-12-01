@@ -11,17 +11,20 @@
     ///
     /// </summary>
      
+	/*
+	 * Draws health bars over enemies, heavily modified from a script by A.Roberts
+	 */
     public class EnemyHealth : MonoBehaviour {
      
-    public float initialGreenLength = 0.5f;
-    public GameObject greenBar;
-    public float curHealth;
-    public float maxHealth;
-	public float barOffset = 5f;
+    public float initialGreenLength = 0.5f;	//Initial health bar length
+    public GameObject greenBar;	//Health bar
+    public float curHealth;	//Current character health
+    public float maxHealth;	//Maximum character health
+	public float barOffset = 5f;	//MAGIC NUMBER THAT MAKES THINGS WORK
 	     
-    Vector3 greenPos;
+    Vector3 greenPos;	//Position of the health bar relative to the character
      
-    public CharacterStats healthScript;
+    public CharacterStats healthScript;	//Character health script
      
      
     void Awake ()
@@ -39,7 +42,7 @@
     void Update ()
     {
      
-	    
+	    //Move the health bar to the left make it look like it's only becoming shorter from one end
 		Vector3 newpos = Vector3.zero;
 		newpos.x = (1 - curHealth/maxHealth) * barOffset;
 		greenBar.transform.localPosition = newpos;
@@ -50,7 +53,8 @@
 	     
 	    // C# conversion of Professor Snake's awesome code from Unity forum's
 	    // http://answers.unity3d.com/questions/403008/help-with-enemy-health-bars.html
-	     
+	    
+		//Scale the health bar to reflect health
 	    Vector3 greenScale = greenBar.transform.localScale;
 	    greenScale.x = (curHealth/maxHealth);
 	    greenBar.transform.localScale = greenScale;
@@ -58,6 +62,7 @@
 	    //keeps bar facing camera
 	    transform.LookAt(Camera.main.transform);
 	    
+		//Disable health bar when the character is dead
 		if (!healthScript.isAlive) this.gameObject.SetActive(false);
 	    }
     }

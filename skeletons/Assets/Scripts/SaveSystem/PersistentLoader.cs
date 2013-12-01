@@ -12,7 +12,7 @@ public class PersistentLoader : MonoBehaviour {
 	
 	public void Awake(){
 		//Singleton - only allow one instance
-		if (GameObject.FindGameObjectsWithTag("PersistentLoader").Length > 1){
+		if (GameObject.FindGameObjectsWithTag(Tags.persistentLoader).Length > 1){
 			GameObject.Destroy(this.gameObject);
 		}
 		//Make this persistent so it stays alive when changing scenes
@@ -38,7 +38,7 @@ public class PersistentLoader : MonoBehaviour {
 		//Are we loading state and is the scene loaded
 		if (loading && !Application.isLoadingLevel){
 			loading = false;
-			SaveControl sc = GameObject.FindGameObjectWithTag("SaveControl").GetComponent<SaveControl>();
+			SaveControl sc = GameObject.FindGameObjectWithTag(Tags.saveControl).GetComponent<SaveControl>();
 			sc.slotname = saveSlot;
 			sc.DoLoad();	//Load state
 			Time.timeScale = 1.0f;	//Unpause the game

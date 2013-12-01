@@ -80,7 +80,7 @@ public class MouseOrbitImproved : MonoBehaviour {
 			
 			//get the furthest point where the target is visible from all angles
 			for (int i = 0; i < origins.Length; i++){
-		        if (Physics.Linecast (target.position, origins[i], out hit) && hit.transform.gameObject.layer != 8/*ignore enemies & other dynamic objects*/) {
+		        if (Physics.Linecast (target.position, origins[i], out hit) && hit.transform.gameObject.layer != Tags.layer_dynamic/*ignore enemies & other dynamic objects*/) {
 		            if (hit.distance < distance) distance = hit.distance;
 		        }
 			}

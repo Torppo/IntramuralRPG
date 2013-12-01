@@ -33,12 +33,14 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if (anim.GetCurrentAnimatorStateInfo(0).nameHash != HashIDs.getHitState && car.isAlive){	//don't move during hitstun
 			
+			//move player
 			Vector3 moveDirection;
 			Vector3 right = cam.transform.right;
 			right.y = 0;
 			Vector3 forward = cam.transform.forward;
 			forward.y = 0;
 			
+			//Set direction relative to camera direction
 			moveDirection = right.normalized * h + forward.normalized * v;
 			
 			moveDirection *= moveSpeed;
@@ -48,10 +50,13 @@ public class PlayerMovement : MonoBehaviour {
 			
 			Animate(moveDirection.magnitude, Input.GetKeyDown(KeyCode.Space));
 			
+			//If the player isn't moving, face the camera direction
 			if (h == 0 && v == 0){
 				moveDirection = forward;
 			}
 			
+			
+			//Turn the player
 			float step = turnSpeed * Time.deltaTime;
     		Vector3 newDir = Vector3.RotateTowards(transform.forward, moveDirection, step, 0.0F);
 			transform.rotation = Quaternion.LookRotation(newDir);
@@ -62,6 +67,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Animate (float v, bool striking){
 		anim.SetFloat(HashIDs.movementSpeedFloat, v);
 		anim.SetBool(HashIDs.strikeAnimBool, striking);
+		//Shoot if the player has a shot
 		if (shot != null && v == 0 && (anim.GetCurrentAnimatorStateInfo(1).nameHash == HashIDs.attackState)){
 			Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2));
 			shot.Shoot(ray.GetPoint(10f));

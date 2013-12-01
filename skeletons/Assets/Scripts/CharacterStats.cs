@@ -27,7 +27,7 @@ public class CharacterStats : MonoBehaviour {
 	public void DealDamage(int damage) {
 		if(isAlive) {
 			health -= damage;
-			bloodEmitter.Play();
+			bloodEmitter.Play();	//splash blood
 			if(health <= 0) {
 				isAlive = false;
 				anim.SetBool(HashIDs.isAliveBool, false);
@@ -53,7 +53,8 @@ public class CharacterStats : MonoBehaviour {
 	public void LoadData(ISaveService sc){
 		isAlive = sc.LoadInt(this.gameObject, "stats.isAlive") == 1? true : false;
 		health = sc.LoadInt(this.gameObject, "stats.health");
-		if (isAlive == false){
+		if (isAlive == false){	
+			//deactivate dead character to prevent death animation from replaying on load
 			this.gameObject.SetActive(false);
 			anim.SetBool(HashIDs.isAliveBool, false);
 		}

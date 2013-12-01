@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Deals damage to target and then deletes the parent object
+ */
 public class ImpactDamage : MonoBehaviour {
 
-	public GameObject owner;	//the character holding this weapon
-	public string targetTag;	//the tag of objects affected by this weapon
-	public float expire = 10;
+	public GameObject owner;	//The parent object of this attack
+	public string targetTag;	//the tag of objects affected by this attack
+	public float expire = 10;	//Delay until this object is autodestructed
 	
 	private float expireTimer = 0;
 	

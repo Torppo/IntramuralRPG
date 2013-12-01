@@ -22,7 +22,7 @@ public class SaveControl : MonoBehaviour, ISaveService {
 		//Keyboard commands
 		if (Input.GetKeyDown(KeyCode.F1)) DoSave();
 		if (Input.GetKeyDown(KeyCode.F2)) { 
-			GameObject.FindGameObjectWithTag("PersistentLoader").GetComponent<PersistentLoader>().LoadGame(slotname);
+			GameObject.FindGameObjectWithTag(Tags.persistentLoader).GetComponent<PersistentLoader>().LoadGame(slotname);
 		}
 		if (Input.GetKeyDown(KeyCode.F12)) PlayerPrefs.DeleteAll();
 	}
