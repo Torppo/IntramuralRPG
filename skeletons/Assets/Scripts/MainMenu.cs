@@ -96,6 +96,9 @@ public class MainMenu : MonoBehaviour {
 			"Use mouse to navigate in menus";
 		
 		GUILayout.Label( helpContent, contentStyle);
+		
+		if (GUI.Button(new Rect (120, Screen.height - buttonHeight - 50, Screen.width-240, buttonHeight), "Back"))
+			currentView = Views.MenuView;
 
 		
 		if (Input.GetKeyDown(KeyCode.Escape)){
@@ -127,6 +130,8 @@ public class MainMenu : MonoBehaviour {
 		GUILayout.Label(creditsContent, contentStyle);
 		GUILayout.Label(licenseInfo, contentStyle);
 		
+		if (GUI.Button(new Rect (120, Screen.height - buttonHeight - 50, Screen.width-240, buttonHeight), "Back"))
+			currentView = Views.MenuView;
 		
 		if (Input.GetKeyDown(KeyCode.Escape)){
 			currentView = Views.MenuView;

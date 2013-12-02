@@ -27,7 +27,7 @@ public class EndScene : MonoBehaviour {
 				restartCountdown -= Time.deltaTime;	
 			}
 			else {
-				Application.LoadLevel(Application.loadedLevel);	
+				Application.LoadLevel(0);	
 			}
 		}	
 	}
