@@ -53,7 +53,7 @@ public class MouseOrbitImproved : MonoBehaviour {
 			transform.rotation = rotation;
 	 		
 			//Scroll wheel zoom
-	        defaultDistance = Mathf.Clamp(defaultDistance - Input.GetAxis("Mouse ScrollWheel")*5, distanceMin, distanceMax);
+	        defaultDistance = Mathf.Clamp(defaultDistance - Input.GetAxis("Mouse ScrollWheel"), distanceMin, distanceMax);
 			
 			//Ideal target position
 			Vector3 targetPosition = rotation * new Vector3(0.0f, 0.0f, -defaultDistance) + target.position;
