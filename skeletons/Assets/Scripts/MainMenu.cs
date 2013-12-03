@@ -93,6 +93,7 @@ public class MainMenu : MonoBehaviour {
 			"Press I in game to open (and close) Inventory\n" +
 			"Press C in game to pick up coins\n" +
 			"Press E in game to use coins\n" +
+			"Press X in game to drop breadcrumbs\n" +
 			"Use mouse to navigate in menus";
 		
 		GUILayout.Label( helpContent, contentStyle);
@@ -112,7 +113,7 @@ public class MainMenu : MonoBehaviour {
 		GUI.Label (new Rect (20, 20, 100, 20), "Credits", headerStyle);
 		
 		String creditsContent = "Developed by Team Intramural\n\n" +
-			"Characters, door and vending machine from Unity Asset Store\n\n" +
+			"Characters, door, gold pile and vending machine from Unity Asset Store\n\n" +
 			"Lantern, rock, wooden support and wooden plank by d123s404\n\n" +
 			"Textures used in environmental models by Max Boughen, www.maxtextures.com *\n\n" +
 			
