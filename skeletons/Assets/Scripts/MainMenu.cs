@@ -23,8 +23,8 @@ public class MainMenu : MonoBehaviour {
 		return new Rect (120, firstButtonStartPoint+(buttonHeight*(nthButton-1)), Screen.width - 240, buttonHeight);
 	}
 	
-	void Start(){
-		
+	void Awake(){
+		Screen.showCursor = true;
 		if (GameObject.FindGameObjectWithTag("PersistentLoader").GetComponent<PersistentLoader>().Exist("slot1")){
 			saveExists = true;
 		}
@@ -66,7 +66,7 @@ public class MainMenu : MonoBehaviour {
 			GUI.enabled = false; // to disable Continue button if there is no save game to load
 		}
 
-		if (GUI.Button (getRectangleForNthButton(2), "Continue")) { 
+		if (GUI.Button (getRectangleForNthButton(2), "Load Game")) { 
 			GameObject.FindGameObjectWithTag("PersistentLoader").GetComponent<PersistentLoader>().LoadGame("slot1");		
 		}
 		GUI.enabled = true;
@@ -91,7 +91,7 @@ public class MainMenu : MonoBehaviour {
 			"Use Space bar to attack\n" +
 			"Press Esc in game to open (and close) Pause Menu\n" +
 			"Press I in game to open (and close) Inventory\n" +
-			"Press C in game to pick up coins\n" +
+			"Press C in game to pick up items\n" +
 			"Press E in game to use coins\n" +
 			"Press X in game to drop breadcrumbs\n" +
 			"Use mouse to navigate in menus";

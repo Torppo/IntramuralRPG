@@ -43,7 +43,7 @@ public class HealthBar : MonoBehaviour {
 				restartCountdown -= Time.deltaTime;	
 			}
 			else {
-				Application.LoadLevel(Application.loadedLevel);	
+				Application.LoadLevel(0);	
 			}
 		}
 	}

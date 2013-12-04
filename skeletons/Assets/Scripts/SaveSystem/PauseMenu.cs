@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour {
 	void Awake(){
 		moi = GetComponent<MouseOrbitImproved>();
 		inventory = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<Inventory>();
+		Screen.showCursor = false;
 	}
 	
 	void Update(){
@@ -61,12 +62,14 @@ public class PauseMenu : MonoBehaviour {
 		Time.timeScale = 0.0f;
 		paused = true;
 		moi.enabled = false;
+		Screen.showCursor = true;
 	}
 	//Close a menu
 	private void CloseMenu(){
 		Time.timeScale = 1.0f;
 		paused = false;
 		moi.enabled = true;
+		Screen.showCursor = false;
 	}
 	
 	void OnGUI() {

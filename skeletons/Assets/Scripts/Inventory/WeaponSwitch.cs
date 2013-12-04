@@ -36,5 +36,7 @@ public class WeaponSwitch : MonoBehaviour {
 	
 	public void LoadData(ISaveService sc){
 		SelectWeapon(sc.LoadInt(this.gameObject, "equipped_weapon"));
+		//Last minute hotfix
+		if (activeWeapon == elementStaff) InventoryItem.FromString(InventoryItem.staff).Use();
 	}
 }

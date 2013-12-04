@@ -31,6 +31,7 @@ public class CharacterStats : MonoBehaviour {
 			if(health <= 0) {
 				isAlive = false;
 				anim.SetBool(HashIDs.isAliveBool, false);
+				this.collider.enabled = false;
 			}
 		}
 	}
